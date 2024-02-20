@@ -5,17 +5,20 @@ require_once "./food.php";
 require_once "./games.php";
 require_once "./kennels.php";
 
-$productProva = new product("casuale", 48, true, false, true);
-var_dump($productProva);
+//$productProva = new product("casuale", 48, true, false, true);
+//var_dump($productProva);
 
-$foodProva = new food("Monge", 33, true, false, true, "12/12/12", "33kg");
-var_dump($foodProva);
+$Monge = new food("Monge", 33, true, true, false, "12/12/12", 33);
+$Monge->img = "https://www.bauzaar.it/media/catalog/product/h/y/hypoallergenic-12kg_1.jpg?store=default&image-type=image";
+//var_dump($Monge);
 
-$gamesProva = new games("Palla volante", 6, true, true, true, "Plastica", "Palla");
-var_dump($gamesProva);
+$pallaVolante = new games("Palla volante", 6, true, true, true, "Plastica", "Palla");
+$pallaVolante->img = "https://m.media-amazon.com/images/I/51mZbaOlXrL.jpg";
+//var_dump($pallaVolante);
 
-$kennelsProva = new kennels("Cuccia di legno", 150, true, true, false, true, "3m*2m");
-var_dump($kennelsProva);
+$cucciaRinforzata = new kennels("Cuccia di legno", 150, true, true, false, true, "3m*2m");
+$cucciaRinforzata->img = "https://shop-cdn-m.mediazs.com/bilder/6/400/23639_pla_hundehuette_spike_classic_xl_fg_8237_6.jpg";
+//var_dump($cucciaRinforzata);
 
 ?>
 
@@ -30,17 +33,151 @@ var_dump($kennelsProva);
 </head>
 <body>
 
-    <header>
-        HEADER
-    </header>
+<h2 class="text-center mb-5">I nostri articoli</h2>
 
-    <main>
-        MAIN
-    </main>
+<div class="d-flex justify-content-around bg-danger-subtle">
 
-    <footer>
-        FOOTER
-    </footer>
+<div class="card bg-info" style="width: 18rem;">
+  <img src="<?php echo $Monge->img ?>" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title"><?php echo $Monge->nome; ?></h5>
+     <p class="card-text">Prezzo : €<?php echo $Monge->price ?></p>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Scadenza : <?php echo $Monge->expiration?> </li>
+    <li class="list-group-item">Disponibilità : 
+        <?php
+            if($Monge->stock == true){
+                echo 'Si';
+            } 
+            else{
+                echo 'No';
+            } 
+        ?></li>
+    <li class="list-group-item">Kg: <?php echo $Monge->kg?></li>
+
+    <li class="list-group-item">Consigliato per cani? 
+        <?php
+        if($Monge->forDog == true){
+            echo "Si";
+        }
+        else{
+            echo "No";
+        }  
+        ?> </li>
+
+    <li class="list-group-item">Consigliato per gatti?
+        <?php
+        if($Monge->forCat == true){
+            echo "Si";
+        }
+        else{
+            echo "No";
+        }
+        ?>
+    </li>
+  </ul>
+</div>
+
+<div class="card bg-info" style="width: 18rem;">
+  <img src="<?php echo $pallaVolante->img ?>" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title"><?php echo $pallaVolante->nome; ?></h5>
+     <p class="card-text">Prezzo : €<?php echo $pallaVolante->price ?></p>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Materiale : <?php echo $pallaVolante->material?> </li>
+    <li class="list-group-item">Disponibilità : 
+        <?php
+            if($pallaVolante->stock == true){
+                echo 'Si';
+            } 
+            else{
+                echo 'No';
+            } 
+        ?></li>
+    <li class="list-group-item">Tipo di gioco: <?php echo $pallaVolante->gameType?></li>
+
+    <li class="list-group-item">Consigliato per cani? 
+        <?php
+        if($pallaVolante->forDog == true){
+            echo "Si";
+        }
+        else{
+            echo "No";
+        }  
+        ?> </li>
+
+    <li class="list-group-item">Consigliato per gatti?
+        <?php
+        if($pallaVolante->forCat == true){
+            echo "Si";
+        }
+        else{
+            echo "No";
+        }
+        ?>
+    </li>
+  </ul>
+</div>
+
+<div class="card bg-info" style="width: 18rem;">
+  <img src="<?php echo $cucciaRinforzata->img ?>" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title"><?php echo $cucciaRinforzata->nome; ?></h5>
+     <p class="card-text">Prezzo : €<?php echo $cucciaRinforzata->price ?></p>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Impermeabile : 
+    <?php
+    if($cucciaRinforzata->waterproof == true){
+        echo "Si";
+    }
+    else{
+        echo "No";
+    }
+     ?> </li>
+    <li class="list-group-item bg-danger">Disponibilità : 
+        <?php
+            if($cucciaRinforzata->stock == true){
+                echo 'No';
+            } 
+            else{
+                echo 'Si';
+            } 
+        ?></li>
+    <li class="list-group-item">Misure: <?php echo $cucciaRinforzata->dimension?></li>
+
+    <li class="list-group-item">Consigliato per cani? 
+        <?php
+        if($cucciaRinforzata->forDog == true){
+            echo "Si";
+        }
+        else{
+            echo "No";
+        }  
+        ?> </li>
+
+    <li class="list-group-item">Consigliato per gatti?
+        <?php
+        if($cucciaRinforzata->forCat == false){
+            echo "No";
+        }
+        else{
+            echo "Si";
+        }
+        ?>
+    </li>
+  </ul>
+</div>
+
+</div>
     
 </body>
 </html>
