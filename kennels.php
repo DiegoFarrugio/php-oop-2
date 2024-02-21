@@ -1,8 +1,12 @@
 <?php
 
 require_once __DIR__.'/product.php';
+require_once __DIR__.'/./trait/traits.php';
 
 class kennels extends product{
+
+    use allMeasure;
+    
     public $waterproof;
     public $dimension;
 
@@ -12,6 +16,7 @@ class kennels extends product{
         $stock,
         $forDog,
         $forCat,
+        $measure,
         $waterproof,
         $dimension
     ) 
@@ -23,8 +28,8 @@ class kennels extends product{
             $forDog,
             $forCat
         );
-        $this->waterproof = $waterproof;
         $this->dimension = $dimension;
+        $this->measure = $measure;
     }
 
 

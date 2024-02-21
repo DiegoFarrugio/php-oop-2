@@ -8,15 +8,38 @@ require_once "./kennels.php";
 //$productProva = new product("casuale", 48, true, false, true);
 //var_dump($productProva);
 
-$Monge = new food("Monge", 33, true, true, false, "12/12/12", 33);
+$Monge = new food("Monge", 33, true, true, false, "12/12/12", 35);
 $Monge->img = "https://www.bauzaar.it/media/catalog/product/h/y/hypoallergenic-12kg_1.jpg?store=default&image-type=image";
 //var_dump($Monge);
+$allProduct = [];
 
-$pallaVolante = new games("Palla volante", 6, true, true, true, "Plastica", "Palla");
+$priceProduct = 33;
+if(isset($GET['price'])){
+    $priceProduct = $GET['price'];
+}
+
+try {
+    $prodottoGenerico = new product (
+        'Monge',
+        $priceProduct,
+        true,
+        true,
+        false,
+        '12/12/12',
+        35
+    );
+    $allProduct[] = $prodottoGenerico;
+}
+
+catch (Exception $e) {
+    echo 'Prezzo non valido';
+}
+
+$pallaVolante = new games("Palla volante", 6, true, true, true, "Plastica", "4cm*20cm");
 $pallaVolante->img = "https://m.media-amazon.com/images/I/51mZbaOlXrL.jpg";
 //var_dump($pallaVolante);
 
-$cucciaRinforzata = new kennels("Cuccia di legno", 150, true, true, false, true, "3m*2m");
+$cucciaRinforzata = new kennels("Cuccia di legno", 150, true, true, false, "3m*2m", true, true);
 $cucciaRinforzata->img = "https://shop-cdn-m.mediazs.com/bilder/6/400/23639_pla_hundehuette_spike_classic_xl_fg_8237_6.jpg";
 //var_dump($cucciaRinforzata);
 
@@ -100,7 +123,7 @@ $cucciaRinforzata->img = "https://shop-cdn-m.mediazs.com/bilder/6/400/23639_pla_
                 echo 'No';
             } 
         ?></li>
-    <li class="list-group-item">Tipo di gioco: <?php echo $pallaVolante->gameType?></li>
+    <li class="list-group-item">Misure: <?php echo $pallaVolante->measure?></li>
 
     <li class="list-group-item">Consigliato per cani? 
         <?php
@@ -152,7 +175,7 @@ $cucciaRinforzata->img = "https://shop-cdn-m.mediazs.com/bilder/6/400/23639_pla_
                 echo 'Si';
             } 
         ?></li>
-    <li class="list-group-item">Misure: <?php echo $cucciaRinforzata->dimension?></li>
+    <li class="list-group-item">Misure: <?php echo $cucciaRinforzata->measure?></li>
 
     <li class="list-group-item">Consigliato per cani? 
         <?php

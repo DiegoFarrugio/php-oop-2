@@ -1,10 +1,13 @@
 <?php
 
 require_once __DIR__.'/product.php';
+require_once __DIR__.'/./trait/traits.php';
 
 class games extends product{
+
+    use allMeasure;
+    
     public $material;
-    public $measure;
     public $gameType;
 
     public function __construct(
@@ -14,7 +17,7 @@ class games extends product{
         $forDog,
         $forCat,
         $material,
-        $gameType,
+        $measure
     ) 
     {
         parent::__construct(
@@ -25,7 +28,7 @@ class games extends product{
             $forCat
         );
         $this->material = $material;
-        $this->gameType = $gameType;
+        $this->measure = $measure;
     }
 
 
